@@ -11,4 +11,5 @@ def test_signin(automation_manager):
         page.goto(automation_manager.test_parameters["URL"])
         home_page = HomePage(page, automation_manager.test_parameters)
         home_page.profile_button.click()
+        home_page.login_button.click()
         print("fdsfdf")
