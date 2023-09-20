@@ -1,0 +1,361 @@
+def custom_decorator(func):
+    def wrapper():
+        print("Before printing numbers")
+        func()
+        print("After printing numbers")
+    return wrapper
+
+
+@custom_decorator
+def print_numbers():
+    for i in range(1, 11):
+        print(i)
+
+
+def count_anagrams(list_of_strings):
+    counts = {}
+    for string in list_of_strings:
+        sorted_string = ''.join(sorted(string))
+        counts[sorted_string] = counts.get(sorted_string, 0) + 1
+
+    return counts
+
+
+def is_palindrome(sentence):
+    return sentence == sentence[::-1]
+
+
+def is_palindrome_with_character(sentence):
+    new_sentence = ''.join([char.lower() for char in sentence if char.isalnum()])
+    return new_sentence == new_sentence[::-1]
+
+
+def remove_duplicate(numbers):
+    unique_numbers = []
+    for num in numbers:
+        if num not in unique_numbers:
+            unique_numbers.append(num)
+
+    return unique_numbers
+
+
+def counts_numbers(numbers):
+    counts = {}
+    for num in numbers:
+        if num in counts:
+            counts[num] += 1
+        else:
+            counts[num] = 1
+
+    return counts
+
+
+def counts_numbers2(numbers):
+    counts = {}
+    for num in numbers:
+        counts[num] = counts.get(num, 0) + 1
+
+    return counts
+
+
+def remove_space(sentence):
+    result = ""
+    for char in sentence:
+        if char != " ":
+            result += char
+
+    return result
+
+
+def remove_space2(sentence):
+    return ''.join([char for char in sentence if char != ' '])
+
+
+def is_armstrong_number(number):
+    num_str = str(number)
+    num_of_digit = len(num_str)
+    total_sum = sum(int(digit) ** num_of_digit for digit in num_str)
+    return total_sum == number
+
+
+def is_contains_duplicate(numbers):
+    counts = []
+    for num in numbers:
+        if num in counts:
+            return True
+        counts.append(num)
+
+    return False
+
+
+def count_duplicates(list_int):
+    count = {}
+    duplicate_count = 0
+
+    for num in list_int:
+        if num in count:
+            count[num] += 1
+            if count[num] == 2:
+                duplicate_count += 1
+        else:
+            count[num] = 1
+
+    return duplicate_count
+
+
+def is_anagram(str1, str2):
+    if len(str1) != len(str2):
+        return False
+
+    char_count = {}
+
+    for char in str1:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    for char in str2:
+        if char in char_count:
+            char_count[char] -= 1
+            if char_count[char] < 0:
+                return False
+        else:
+            return False
+
+    return True
+
+
+def group_of_anagrams(string_inputs):
+    anagram_group = {}
+
+    for word in string_inputs:
+        sorted_word = ''.join(sorted(word))
+
+        if sorted_word in anagram_group:
+            anagram_group[sorted_word].append(word)
+        else:
+            anagram_group[sorted_word] = [word]
+
+    return list(anagram_group.values())
+
+
+# what number is missing in list
+def missing_number(nums):
+    missing_numbers = []
+    sorted_list = sorted(nums)
+    for number in range(sorted_list[0], sorted_list[-1] + 1):
+        if number not in sorted_list:
+            missing_numbers.append(number)
+
+    return missing_numbers
+
+
+# XOR Operator
+def single_number(numbers):
+    count = 0
+    for num in numbers:
+        count ^= num
+    return count
+
+
+def find_single_numbers(numbers):
+    return [num for num in numbers if numbers.count(num) == 1]
+
+[1,2,3] --> 123
+def convert_list_to_one_number(numbers):
+    s = [str(x) for x in numbers]
+    res = int(''.join(s))
+    return res
+
+
+def extend_lists():
+    ls1 = [11, 19, 25, 40]
+    ls2 = [31, 84, 13]
+
+    ls1.extend(ls2)
+    print(ls1)
+
+
+def append_lists():
+    ls1 = [1, 2, 3, 4]
+    ls2 = [5, 6, 7, 8]
+
+    for i in ls2:
+        ls1.append(i)
+    print(ls1)
+
+
+def list_comprehension():
+    num1 = [1, 2, 3]
+    num2 = [4, 5, 6]
+    num3 = [x for n in (num1, num2) for x in n]
+    print(num3)
+
+
+def convert_list_to_flat_list():
+    lis = [[11, 22, 33, 44], [55, 66, 77], [88, 99]]
+    return sum(lis, [])
+
+
+def convert_list_to_flat_list2():
+    lis = [[11, 22, 33, 44], [55, 66, 77], [88, 99]]
+    res = []
+    for i in lis:
+        res.extend(i)
+    return res
+
+
+def compare_strings(str1, str2):
+    return get_final_string(str1) == get_final_string(str2)
+
+
+def get_final_string(string):
+    result = ""
+    if len(string) > 0:
+        for char in string:
+            if char != "#":
+                result += char
+            else:
+                result = result[:-1]
+
+    return result
+
+
+# example (1,2,3(4,),(5,6,(7,8))) --> [1,2,3,4,5,6,7,8]
+def flatten_tuple_list(tuple_list):
+    flat_list = []
+    for item in tuple_list:
+        if type(item) is tuple:
+            flat_list.extend(flatten_tuple_list(item))
+        else:
+            flat_list.append(item)
+    return flat_list
+
+
+def flatten_list(nested_list):
+    flat_list = []
+    for item in nested_list:
+        if type(item) is list:
+            flat_list.extend(flatten_list(item))
+        else:
+            flat_list.append(item)
+    return flat_list
+
+
+def print_floyds_trinagle(rows):
+    num = 1
+    for i in range(1, rows + 1):
+        for j in range(i):
+            print(num, end=" ")
+            num += 1
+        print()
+
+
+def fibonacci_recrusive(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci_recrusive(n - 1) + fibonacci_recrusive(n - 2)
+
+
+# aabbb --> 2a3b
+def compress_string(s):
+    compressed = []
+    count = 1
+
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            compressed.append(s[i - 1] + str(count))
+            count = 1
+
+    compressed.append(s[-1] + str(count))
+
+    return ''.join(compressed)
+
+
+def get_number_of_each_char(string):
+    char_count = {}
+    for char in string:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+
+    return char_count
+
+
+# "abbaaccdde"
+def count_double_chars(input_string):
+    count = 0
+    for i in range(len(input_string) - 1):
+        if input_string[i] == input_string[i + 1]:
+            count += 1
+    return count
+
+
+def get_only_int_list(list_combine):
+    return [x for x in list_combine if type(x) == int]
+
+
+def get_only_str_list(list_combine):
+    return [x for x in list_combine if type(x) == str and "a" in x]
+
+
+def get_first_char_of_each_word(string):
+    words = string.split()
+    return ''.join(word[0] for word in words)
+
+
+def get_middle_list(my_list):
+    return my_list[len(my_list) // 2]
+
+
+def check_what_chars_exist_in_both_strings(str1, str2, order_by_second=False):
+    common_chars = ""
+
+    if order_by_second:
+        temp = str1
+        str1 = str2
+        str2 = temp
+
+    if len(str1) > 0:
+        for char in str1:
+            if char in str2 and char not in common_chars:
+                common_chars += char
+
+    return common_chars
+
+
+def is_mirror_number(number):
+    str_num = str(number)
+    return str_num == str_num[::-1]
+
+
+#  For Example: s1 = "gcccggd" -> res_s ="gc"
+def get_max_char(string):
+    char_counts = {}
+    result = ""
+    for char in string:
+        if char in char_counts:
+            char_counts[char] += 1
+        else:
+            char_counts[char] = 1
+
+    for key, value in char_counts.items():
+        if value == max(char_counts.values()):
+            result += key
+
+    print(result)
+    return result
+
+
+def implement_range(start, stop, step):
+    new_list = []
+    while start < stop:
+        new_list.append(start)
+        start += step
+
+    print(new_list)
+    return new_list
